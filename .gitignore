@@ -1,0 +1,46 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+*.env
+venv/
+ENV/
+env/
+*.egg-info/
+
+# Model files
+*.h5
+*.keras
+*.pb
+*.ckpt
+*.tflite
+
+# Training logs
+*.log
+logs/
+events.out.tfevents.*
+
+# Dataset folders or large data
+data/
+datasets/
+*.csv
+*.tsv
+*.zip
+
+# Output or result folders
+output/
+results/
+checkpoints/
+
+# VSCode and IDE configs
+.vscode/
+.idea/
