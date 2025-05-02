@@ -1,4 +1,37 @@
-# Recognizing Pleasant and Unpleasant Faces
+<h1 align="center">Teaching ResNet to Read Faces: Pleasant or Unpleasant?</h1>
+
+| ![Image](https://github.com/user-attachments/assets/924bc45f-08ad-422c-8b82-21e7c31a52a0) | ![Image](https://github.com/user-attachments/assets/d3d28742-e084-4d43-86e8-1d48cc7b7947) | ![Image](https://github.com/user-attachments/assets/13c603dc-09b6-4de2-b4f5-6ae56a052b65)
+|:----------------------------:|:----------------------------:|:----------------------------:|
+##  Project Overview
+A simple image classification project using a *fine-tuned* ResNet50 model (Transfer Learning) to identify whether a face appears pleasant or unpleasant. The objective of this assignment is to develop a decision system that classifies facial images into two categories (binary classification). You can find the code on how we extract features (training only the custom head) and fine-tune the model (by unfreezing a few of the top layers of the frozen model base) in `resnet-cnn.ipynb`
+
+### 📝 **Approach:**  
+
+1. **Transfer Learning with ResNet50:**  
+   - We Leverage a pre-trained ResNet50 model (trained on ImageNet) as a feature extractor, initializing it with frozen weights to preserve learned patterns.  
+   - Then, we replace the original classifier head with a **custom binary classification layer** (`GlobalAveragePooling2D → Dropout → Sigmoid-activated Dense`).  
+
+2. **Two-Phase Training:**  
+   - **Phase 1 (Feature Extraction):** We train only the custom head while keeping the ResNet50 base frozen, using a moderate learning rate (`Adam, LR=1e-4`).  
+   - **Phase 2 (Fine-Tuning):** Then, we unfreeze the top 30 layers of ResNet50 to adapt high-level features to the target task, training with a lower learning rate (`1e-5`) for stability.  
+
+3. **Regularization & Optimization:**  
+   - Employ **Dropout (30%)** to mitigate overfitting.  
+   - Monitor validation loss and **AUC (Area Under the Curve)** for robust performance evaluation.  
+   - Use **Early Stopping** and **Model Checkpointing** to save the best model and prevent overfitting.  
+
+---
+
+### ⚙️ **Technical Highlights:**  
+- **Architecture:** ResNet50 (fine-tuned) + custom binary classifier.  
+- **Metrics:** Binary cross-entropy loss, accuracy, and AUC.  
+- **Training:** 20 epochs (frozen base) + 10 epochs (fine-tuning) with batch size 32.  
+- **Tools:** TensorFlow/Keras, ResNet50 preprocessing.
+  
+### 📈 **Testing Results:**
+- **Accuracy:** 97.18%
+- **AUC:** 99.50%
+- **Loss:** 0.0882
 
 ## 💡 How to Load and Use the Model
 
