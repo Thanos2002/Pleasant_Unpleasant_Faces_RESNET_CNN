@@ -22,7 +22,7 @@ label = 'pleasant' if pred[0] > 0.5 else 'unpleasant'
 # Display prediction
 print(f"Prediction: {label} (Confidence: {pred[0][0]:.4f})")
 
-# Optionally, show the image
+# Show the image
 plt.imshow(cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB))
 plt.title(f"Predicted: {label}")
 plt.axis('off')
